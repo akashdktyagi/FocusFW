@@ -13,6 +13,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
+import config.Config;
+
 public class Cmn {
 
 	/*
@@ -23,13 +25,10 @@ public class Cmn {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy:hh-mm-ss");
 		String timeStamp = sdf.format(d);
 
-		String path = TakeScreenShot(Config.DRIVER);
+		String path = TakeScreenShot(Config.DRIVER_MAP.get(Thread.currentThread().getId()));
 		//Reporter.log("fail", "<a href =\"" + path + "\">Click Here</a>");
 		Reporter.log(timeStamp + " | " + logType + " | " + msg + " <a href =\"" + path + "\">Click Here</a>"+ "<br>",true);
 
-
-
-		//Reporter.log(timeStamp + " | " + logType + " | " + msg + "<br>",true);
 	}
 
 

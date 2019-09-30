@@ -25,6 +25,9 @@ public class CommonPageObjects {
 	@FindBy(how=How.LINK_TEXT,using="Transfer Funds") 
 	WebElement link_transfer_funds;
 	
+	@FindBy(how=How.LINK_TEXT,using="Accounts Overview") 
+	WebElement link_account_overview;
+	
 	
 	
 	//Section 4: Methods
@@ -39,6 +42,13 @@ public class CommonPageObjects {
 		link_transfer_funds.click();
 		Assert.assertEquals(driver.getTitle(), "ParaBank | Transfer Funds");
 		Cmn.log("info", "Transfer Funds page opened");
+	}
+	
+	public void ClickOnAccountOverview() {
+		link_account_overview.click();
+		
+		Assert.assertEquals(driver.getTitle(), "ParaBank | Accounts Overview");
+		Cmn.log("info", "Account Overview Page opened");
 	}
 	
 	

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -75,6 +76,22 @@ public class OpenNewAccountPageObject {
 		//Fetch the Account Number
 		String sNewAccountNumber = segment_show_result.findElement(By.id("newAccountId")).getText();
 		Cmn.log("pass", "New Account Created: " + sNewAccountNumber);
+		
+		//Check in the Account Overview Page -New Account is displayed
+		CommonPageObjects obj = PageFactory.initElements(driver, CommonPageObjects.class);
+		obj.ClickOnAccountOverview();
+		
+		//Validate the new account link is present
+		boolean actual = driver.findElement(By.xpath("//a[text()='"+sNewAccountNumber+"']")).isDisplayed();
+		Assert.assertEquals(actual, true);
+		Cmn.log("pass", "Account is displayed in Accounts Overview page: " + sNewAccountNumber );
+		
+		//Validate the amount is being added in the new account
+		String amount = driver.findElement(By.xpath("//a[text()='"+sNewAccountNumber+"']/parent::td/following-sibling::td")).getText();
+		Assert.assertEquals(amount, "$100.00");
+		Cmn.log("pass", "Account amount is correctly displayed as $100.00 in Accounts Overview page table.");
+		
+		
 	}
 
 }

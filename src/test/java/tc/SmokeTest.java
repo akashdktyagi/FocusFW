@@ -76,6 +76,7 @@ public class SmokeTest {
 
 	}
 	
+	/*
 	@Test
 	public void t_02() {
 		
@@ -118,6 +119,7 @@ public class SmokeTest {
 		
 		
 	}
+	*/
 	
 }
 

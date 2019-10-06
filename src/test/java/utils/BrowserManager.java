@@ -11,9 +11,15 @@ import config.Config;
 public class BrowserManager {
 	
 	
-	public static WebDriver InvokeAndNavigateBrowser(String url) {
-		System.setProperty("webdriver.chrome.driver", "/Users/akashtyagi/Desktop/chromedriver");
-		WebDriver driver = new ChromeDriver();
+	public static WebDriver InvokeAndNavigateBrowser(String browser,String url) {
+		WebDriver driver = null;
+		if (browser.equals("chrome")) {
+			System.setProperty("webdriver.chrome.driver", "/Users/akashtyagi/Desktop/chromedriver");
+			driver = new ChromeDriver();
+		}else if (browser.equals("firefox")) {
+			driver = null;
+		}
+
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();	  
 		driver.get(url);

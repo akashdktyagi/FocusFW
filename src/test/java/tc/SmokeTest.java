@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import config.Config;
@@ -19,22 +20,25 @@ import utils.Cmn;
 public class SmokeTest {
 
 	String url = Config.APP_URL;
-	
+	WebDriver driver;
 	
 	@Test
-	public void t_01_login_in_to_parabank() {
+	@Parameters("browser")
+	public void t_01_login_in_to_parabank(String browser) {
 
-		WebDriver driver = BrowserManager.InvokeAndNavigateBrowser(url);
+		driver = BrowserManager.InvokeAndNavigateBrowser(browser,url);
 		LoginPage login = PageFactory.initElements(driver, LoginPage.class);
 		login.LoginInToParaBank("john", "demo");
+		driver.quit();
 
 	}
 	
 	@Test
-	public void t_02_create_new_account() {
+	@Parameters("browser")
+	public void t_02_create_new_account(String browser) {
 		
 		//Step 1: Invoke and Navigate
-		WebDriver driver = BrowserManager.InvokeAndNavigateBrowser(url);
+		driver = BrowserManager.InvokeAndNavigateBrowser(browser,url);
 		LoginPage login = PageFactory.initElements(driver, LoginPage.class);
 		
 		//Step 2: Login in to the Application
@@ -53,16 +57,19 @@ public class SmokeTest {
 		//Step 5: Validation: New Account is Created
 		oNewAccount.ValidateNewAccountIsCreated();
 		
+		driver.quit();
 		
 	}
 	
 	
 	@Test
-	public void t_04() {
+	@Parameters("browser")
+	public void t_04(String browser) {
 		
 		//Step 1: Invoke and Navigate
-		WebDriver driver = BrowserManager.InvokeAndNavigateBrowser("http://www.automationfraternity.com");
+		driver = BrowserManager.InvokeAndNavigateBrowser(browser,"http://www.automationfraternity.com");
 		Cmn.log("info", "Wow Screen shot");
+		driver.quit();
 
 	}
 	

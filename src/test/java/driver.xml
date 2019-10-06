@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<suite parallel="methods" name="Suite" thread-count="4">
-  <test name="Test">
-    <classes>
-      <class name="tc.SmokeTest"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->

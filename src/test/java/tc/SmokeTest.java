@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -22,7 +24,7 @@ public class SmokeTest {
 	String url = Config.APP_URL;
 	WebDriver driver;
 	
-	@Test
+	@Test(groups = {"login","smoke"})
 	@Parameters("browser")
 	public void t_01_login_in_to_parabank(String browser) {
 
@@ -36,6 +38,7 @@ public class SmokeTest {
 	@Test
 	@Parameters("browser")
 	public void t_02_create_new_account(String browser) {
+	
 		
 		//Step 1: Invoke and Navigate
 		driver = BrowserManager.InvokeAndNavigateBrowser(browser,url);
